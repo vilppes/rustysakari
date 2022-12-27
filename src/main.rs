@@ -1,26 +1,12 @@
-use std::io; 
-fn check_win(winning: String, answer: String) {
-    if answer == winning {
-        println!("Hihhihhii kutittaa");
-    } else {
-        println!("Hävisit pelin");
-    }
-}
-fn handle_user_input() -> String {
-    let mut answer = String::new();
-    match io::stdin().read_line(&mut answer) {
-        Ok(_n) => return answer,
-        Err(error) => return String::from("Haistappa paska t. sakari {}"),
-    }
+mod extractable_functions;
+fn game() {
+    extractable_functions::states_handler(
+        extractable_functions::check_win(String::from("joo\n"), 
+        extractable_functions::handle_user_input(String::from("Pue sakarille villapaita (joo/ei)"))), 
+        String::from("Hihhihhii kutittaa"), 
+        String::from("Hävisit pelin")
+    )
 }
 fn main() {
-    let winning = String::from("joo\n");
-    println!("Pue sakarille villapaita");
-    let mut answer = String::new();
-    match io::stdin().read_line(&mut answer) {
-        Ok(_n) => {
-            check_win(winning, answer);
-        },
-        Err(error) => println!("Haistappa paska t. sakari {}", error),
-    }
+    game();
 }
